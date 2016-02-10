@@ -1,6 +1,6 @@
 -- Example: Moving objects to a specific point
 --[[Description:
-Move an object to a target point, with acceleration, deacceleration (traction)
+Move an object to a target point, with acceleration, deceleration (traction)
 and a set top speed.
 ]]
 require ("movements")
@@ -8,9 +8,9 @@ x, y = 400, 300
 function love.load()	
 	SPEED = 500
 	ACCELERATION = 250
-	DEACCELERATION = 0
+	DECELERATION = 0
 	image = love.graphics.newImage("assets/love-ball.png")
-	move=mega.movements.newMove(ACCELERATION,DEACCELERATION,SPEED,x,y)
+	move=mega.movements.newMove(ACCELERATION,DECELERATION,SPEED,x,y)
 end
 
 function love.draw()
@@ -28,7 +28,8 @@ function love.update(dt)
 	if love.mouse.isDown(1) then
 		move:setTarget(love.mouse.getPosition())
 	elseif love.mouse.isDown(3) then
-		move:setPosition(love.mouse.getPosition())
+		move:setTarget(love.mouse.getPosition())
+		move:snapToTarget()
 	elseif love.mouse.isDown(2) then
 		move:setTarget(nil)
 	end
