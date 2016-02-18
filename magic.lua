@@ -1,6 +1,44 @@
 --do not read. It will make your brain hurt. go read one of our beautiful examples instead.
 local magic = {}
 
+magic.examples = love.filesystem.getDirectoryItems("examples")
+
+for id, name in ipairs(magic.examples) do
+  local ok, data = pcall(love.filesystem.load("examples/" .. name .. "/data.lua"))
+  if not ok then
+    print("error loading data.lua for " .. name .. ": " .. data)
+    data = nil
+  end
+  data = data or {}
+  data.id, data.name = id, name
+  magic.examples[id] = data
+end
+
+function magic.load_example(id)
+  local example = magic.examples[id]
+
+  if not example.chunk then
+    example.chunk = love.filesystem.load("examples/" .. example.name .. "/main.lua")
+  end
+
+  example.env = magic.make_env(example.name)
+  magic.current = example
+
+  local status, err = magic.run(example.chunk)
+  if status then
+    magic.run(example.env.love.load)
+  else
+    magic.current = nil
+    print("unable to load " .. example.name, err)
+    return false
+  end
+  return true
+end
+
+function magic.unload_example()
+  magic.current = nil
+end
+
 function magic.run(func, ...)
   if not func then
     return false, "no func"
@@ -46,15 +84,32 @@ function magic.make_env(example_name) --creates an environment that has all the 
   return ENV
 end
 
-function magic.load_callbacks()
-  local callbacks = {"draw","update"}
-  for callback,v in pairs(love.handlers) do
-    table.insert(callbacks,callback)
+function magic.hook_callbacks()
+  local callbacks = {"update"}
+  for callback,_ in pairs(love.handlers) do
+    if callback ~= "keypressed" then
+      table.insert(callbacks, callback)
+    end
   end
 
   for i, callback in ipairs(callbacks) do
+    local orig = love[callback] or function () end
     love[callback] = function(...)
-      magic.run(magic.current.env.love[callback], ...)
+      if magic.current then
+        magic.run(magic.current.env.love[callback], ...)
+      else
+        orig(...)
+      end
+    end
+  end
+
+  for i, callback in ipairs{"draw", "keypressed"} do -- these need to run always
+    local orig = love[callback] or function () end
+    love[callback] = function(...)
+      if magic.current then
+        magic.run(magic.current.env.love[callback], ...)
+      end
+      orig(...)
     end
   end
 end
