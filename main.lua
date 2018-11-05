@@ -70,9 +70,9 @@ function exf.update(dt)
 end
 
 function exf.draw()
-	love.graphics.setBackgroundColor(54, 172, 248)
+	love.graphics.setBackgroundColor(0.21, 0.67, 0.97)
 
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(1, 1, 1)
 	love.graphics.setFont(exf.bigfont)
 	love.graphics.print("Example Browser", 20, 20)
 	love.graphics.print("Usage:", 20, 500)
@@ -128,7 +128,8 @@ function exf.intable(t, e)
 end
 
 function exf.run(file, title, ...)
-	if not love.filesystem.exists(file) then
+	-- if not love.filesystem.exists(file) then
+	if not love.filesystem.getInfo(file) then
 		print("Could not load file .. " .. file)
 		return
 	end
@@ -171,7 +172,7 @@ end
 
 function exf.clear()
 	love.graphics.setBackgroundColor(0, 0, 0)
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(1, 1, 1)
 	love.graphics.setLineWidth(1)
 	love.graphics.setLineStyle("smooth")
 	love.graphics.setBlendMode("alpha")

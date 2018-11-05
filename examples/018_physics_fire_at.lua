@@ -12,7 +12,7 @@ end
 
 function love.draw()
 	--Sets the color to red and draws the "bullets".
-	love.graphics.setColor(255, 0, 0)
+	love.graphics.setColor(1, 0, 0)
 	
 	--This loops the whole table to get every bullet. Consider v being the bullet.
 	for i,v in pairs(bullets) do
@@ -20,7 +20,7 @@ function love.draw()
 	end
 	
 	--Sets the color to white and draws the "player" and writes instructions.
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(1, 1, 1)
 	
 	love.graphics.print("Left click to fire towards the mouse.", 50, 50)
 	love.graphics.rectangle("line", StartPos.x, StartPos.y, StartPos.width, StartPos.height)

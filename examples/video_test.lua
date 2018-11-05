@@ -5,11 +5,11 @@ function love.load()
     love.graphics.setFont(love.graphics.newFont(11))
 
 	-- Load the video from a file, with audio
-	video = love.graphics.newVideo( "assets/HA-1112-M1LBuchon_flyby.ogg", true )
+	video = love.graphics.newVideo( "assets/HA-1112-M1LBuchon_flyby.ogg", {true} )
 	-- Get video height
 	videoheight = video:getHeight()
-  --Lower the volume
-  video:getSource():setVolume(0.15)
+	--Lower the volume
+	video:getSource():setVolume(0.15)
 	-- Start playing it
 	video:play()
 end
@@ -22,7 +22,7 @@ function love.draw()
 	-- If the video is not playing or left button is clicked
 	if not video:isPlaying() or love.mouse.isDown(1) then
 		-- Rewind to the start
-		video:rewind()
+		video:seek(0)
 		-- And play
 		video:play()
 	end

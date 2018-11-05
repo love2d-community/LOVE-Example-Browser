@@ -21,7 +21,7 @@ end
 
 function love.load()
 	-- Set a lovely pink background color.
-	love.graphics.setBackgroundColor(246, 198, 222)
+	love.graphics.setBackgroundColor(0.96, 0.77, 0.87)
 	
 	-- Load the source of the animation.
 	img = newImagePO2("assets/anim-boogie.png")

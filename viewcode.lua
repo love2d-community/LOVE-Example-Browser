@@ -5,8 +5,8 @@ function love.load()
 	parsed = {}
 	fontheight = love.graphics.getFont():getHeight()
 
-	local colors = {keyword = {0,0,255}, string = {128,128,128}, comment = {0,128,0},
-		number = {255,128,0} , iden = {0,0,0}, default = {0,0,128}, line={255,0,0}}
+	local colors = {keyword = {0,0,1}, string = {0.5,0.5,0.5}, comment = {0,0.5,0},
+		number = {1,0.5,0} , iden = {0,0,0}, default = {0,0,0.5}, line={1,0,0}}
 
 	local contents = love.filesystem.read(filename, 4096)
 	if not contents then
@@ -29,7 +29,7 @@ end
 offy=0
 function love.draw()
 	love.graphics.translate(0,offy)
-	love.graphics.setBackgroundColor({255, 255, 255})
+	love.graphics.setBackgroundColor({1, 1, 1})
 	love.graphics.print(parsed, 10, 20)
 end
 
