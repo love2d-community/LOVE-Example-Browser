@@ -70,7 +70,7 @@ function exf.update(dt)
 end
 
 function exf.draw()
-	love.graphics.setBackgroundColor(54*(1/255), 172*(1/255), 248*(1/255))
+	love.graphics.setBackgroundColor(0.21, 0.67, 0.97)
 
 	love.graphics.setColor(1, 1, 1)
 	love.graphics.setFont(exf.bigfont)

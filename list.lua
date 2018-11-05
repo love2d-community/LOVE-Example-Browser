@@ -29,10 +29,10 @@ function List:new(x, y, w, h)
     o.bar = { size = 20, pos = 0, maxpos = 0, width = 15, lock = nil}
 	
 	o.colors = {}
-	o.colors.normal = {bg = {48*(1/255), 156*(1/255), 225*(1/255)}, fg = {197*(1/255), 232*(1/255), 255*(1/255)}}
-	o.colors.hover  = {bg = {72*(1/255), 131*(1/255), 168*(1/255)}, fg = {255*(1/255), 255*(1/255), 255*(1/255)}}
-	o.windowcolor = {48*(1/255), 156*(1/255), 225*(1/255)}
-	o.bordercolor = {72*(1/255), 131*(1/255), 168*(1/255)}
+	o.colors.normal = {bg = {0.19, 0.61, 0.88}, fg = {0.77, 0.91, 1}}
+	o.colors.hover  = {bg = {0.28, 0.51, 0.66}, fg = {1, 1, 1}}
+	o.windowcolor = {0.19, 0.61, 0.88}
+	o.bordercolor = {0.28, 0.51, 0.66}
     return o
 end
 
