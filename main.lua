@@ -187,7 +187,7 @@ function exf.resume()
 	love.mouse.setVisible(true)
 	love.mouse.setCursor()
 	love.window.setTitle("LOVE Example Browser")
-
+	love.audio.stop()
 end
 
 
