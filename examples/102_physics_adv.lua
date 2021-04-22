@@ -83,25 +83,25 @@ function love.keypressed( key )
    if key == "up" then
       myWorld:setGravity(0, -9.81*32)
       gravity="up"
-      for i,v in ipairs(myWorld:getBodyList( )) do
+      for i,v in ipairs(myWorld:getBodies( )) do
         v:setAwake( true )
       end
    elseif key == "down" then
       myWorld:setGravity(0, 9.81*32)
       gravity="down"
-      for i,v in ipairs(myWorld:getBodyList( )) do
+      for i,v in ipairs(myWorld:getBodies( )) do
         v:setAwake( true )
       end
    elseif key == "left" then
       myWorld:setGravity(-9.81*32, 0)
       gravity="left"
-      for i,v in ipairs(myWorld:getBodyList( )) do
+      for i,v in ipairs(myWorld:getBodies( )) do
         v:setAwake( true )
       end
   elseif key == "right" then
       myWorld:setGravity(9.81*32, 0)
       gravity="right"
-      for i,v in ipairs(myWorld:getBodyList( )) do
+      for i,v in ipairs(myWorld:getBodies( )) do
         v:setAwake( true )
       end
    end
