@@ -50,6 +50,10 @@ function love.wheelmoved( x, y )
 		lastw = "wheel moved up"
 	elseif y < 0 then
 		lastw = "wheel moved down"
+	elseif x > 0 then
+		lastw = "wheel moved right"
+	elseif x < 0 then
+		lastw = "wheel moved left"
 	end
 end
 
